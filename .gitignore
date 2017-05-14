@@ -1,0 +1,3 @@
+*.wasm
+*.asm.js
+hello.js
