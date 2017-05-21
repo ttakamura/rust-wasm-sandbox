@@ -6,7 +6,7 @@ var mallocFloat32 = function(len) {
   return {ptr: bufptr, buf: buf};
 }
 
-window.callWasm = function() {
+window.callHello = function() {
   const helloFn = Module.cwrap('hello', null, ['number', 'number']);
 
   var len = 5;
@@ -19,5 +19,14 @@ window.callWasm = function() {
   helloFn(len, buf.byteOffset);
 
   Module._free(mem.ptr);
+  console.log("end");
+}
+
+window.callPerson = function() {
+  const init = Module.cwrap('init_person', 'number', ['number']);
+  var tom = init(29);
+  console.log(tom);
+  const print = Module.cwrap('print_person', null, ['number']);
+  print(tom);
   console.log("end");
 }
