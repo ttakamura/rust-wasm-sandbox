@@ -51,9 +51,10 @@ pub extern "C" fn init_person(age: i32) -> *mut Person {
 }
 
 #[no_mangle]
-pub extern "C" fn print_person(ptr: *const Person) {
+pub extern "C" fn print_person(ptr: *mut Person) {
     unsafe {
-        let tom: &Person = &*ptr;
+        let tom: &mut Person = &mut *ptr;
+        tom.age += 10;
         println!("{:?}", tom);
     }
 }
